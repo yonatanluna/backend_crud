@@ -1,32 +1,33 @@
 import express from "express";
 
 import {
-  agregarEstudiante,
-  listarEstudiantes,
-  eliminarEstudiante,
-  actualizarEstudiante,
-  obtenerDetallesEstudiante,
-  obtenerDetallesEstudianteUpdate,
-} from "./estudianteController.js";
+  agregarProducto,
+  listarProductos,
+  eliminarProducto,
+  actualizarProducto,
+  obtenerDetallesProducto,
+  obtenerDetallesProductoUpdate,
+} from "./productoController.js";
 
 const router = express.Router();
 
+// Página principal con listado de productos
 router.get("/Crud-Completo-con-NodeJS-Express-y-MySQL", async (req, res) => {
   try {
-    const estudiantes = await listarEstudiantes();
-    res.render("pages/estudiantes", { estudiantes });
+    const productos = await listarProductos();
+    res.render("pages/productos", { productos });
   } catch (error) {
     const { status, message } = error;
     res.status(status || 500).json({ error: message });
   }
 });
 
-// Registrar un nuevo estudiante
-router.post("/estudiantes", async (req, res) => {
-  const { nombre_alumno, email_alumno, curso_alumno } = req.body;
+// Registrar un nuevo producto
+router.post("/productos", async (req, res) => {
+  const { nombre_producto, descripcion, precio, stock } = req.body;
 
   try {
-    await agregarEstudiante({ nombre_alumno, email_alumno, curso_alumno });
+    await agregarProducto({ nombre_producto, descripcion, precio, stock });
     res.redirect("/");
   } catch (error) {
     const { status, message } = error;
@@ -34,45 +35,44 @@ router.post("/estudiantes", async (req, res) => {
   }
 });
 
-// Detalles del estudiante
-router.get("/detalles/:id", async (req, res) => {
-  const estudianteId = req.params.id;
+// Detalles del producto
+router.get("/detalles-producto/:id", async (req, res) => {
+  const productoId = req.params.id;
 
   try {
-    const estudiante = await obtenerDetallesEstudiante(estudianteId);
-    res.render("pages/detalles_estudiante", { estudiante });
+    const producto = await obtenerDetallesProducto(productoId);
+    res.render("pages/detalles_producto", { producto });
   } catch (error) {
     const { status, message } = error;
     res.status(status || 500).json({ error: message });
   }
 });
 
-// Mostrar formulario para actualizar un estudiante
-router.get("/formulario-actualizar-estudiante/:id", async (req, res) => {
-  const estudianteId = req.params.id;
+// Mostrar formulario para actualizar un producto
+router.get("/formulario-actualizar-producto/:id", async (req, res) => {
+  const productoId = req.params.id;
 
   try {
-    const estudiante = await obtenerDetallesEstudianteUpdate(estudianteId);
-
-    res.render("pages/update_estudiante", { estudiante });
+    const producto = await obtenerDetallesProductoUpdate(productoId);
+    res.render("pages/update_productos", { producto });
   } catch (error) {
     const { status, message } = error;
     res.status(status || 500).json({ error: message });
   }
 });
 
-// Ruta para actualizar un estudiante por ID
-router.post("/actualizar-estudiante/:id", async (req, res) => {
-  const { nombre_alumno, email_alumno, curso_alumno } = req.body;
+// Ruta para actualizar un producto por ID
+router.post("/actualizar-producto/:id", async (req, res) => {
+  const { nombre_producto, descripcion, precio, stock } = req.body;
   const id = req.params.id;
 
   try {
-    await actualizarEstudiante(id, {
-      nombre_alumno,
-      email_alumno,
-      curso_alumno,
+    await actualizarProducto(id, {
+      nombre_producto,
+      descripcion,
+      precio,
+      stock,
     });
-
     res.redirect("/Crud-Completo-con-NodeJS-Express-y-MySQL");
   } catch (error) {
     const { status, message } = error;
@@ -80,11 +80,11 @@ router.post("/actualizar-estudiante/:id", async (req, res) => {
   }
 });
 
-// Ruta para borrar un estudiante por ID
-router.post("/borrar-estudiante/:id", async (req, res) => {
+// Ruta para borrar un producto por ID
+router.post("/borrar-producto/:id", async (req, res) => {
   const id = req.params.id;
   try {
-    await eliminarEstudiante(id);
+    await eliminarProducto(id);
     res.redirect("/Crud-Completo-con-NodeJS-Express-y-MySQL");
   } catch (error) {
     const { status, message } = error;

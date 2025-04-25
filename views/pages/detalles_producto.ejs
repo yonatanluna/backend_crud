@@ -6,7 +6,7 @@
       href="public/imgs/favicon.ico"
       type="image/x-icon" />
 
-    <!--fuente-->
+    <!-- Fuente -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="../public/css/bootstrap.min.css" />
     <link rel="stylesheet" href="../public/css/menu.css" />
     <link rel="stylesheet" href="../public/css/home.css" />
-    <title>Detalles del Estudiante</title>
+    <title>Detalles del Producto</title>
   </head>
   <body>
     <header class="header">
@@ -27,12 +27,12 @@
         <img src="../public/imgs/logo.png" alt="Logo" />
       </a>
       <input class="menu-btn" type="checkbox" id="menu-btn" />
-      <label class="menu-icon" for="menu-btn"
-        ><span class="navicon"></span
-      ></label>
+      <label class="menu-icon" for="menu-btn">
+        <span class="navicon"></span>
+      </label>
       <ul class="menu">
         <li>
-          <a class="menu-item" href="/"> Inicio </a>
+          <a class="menu-item" href="/">Inicio</a>
         </li>
         <li>
           <a class="menu-item" href="/Crud-Completo-con-NodeJS-Express-y-MySQL">
@@ -42,27 +42,28 @@
       </ul>
     </header>
 
-    <div
-      class="container justify-content-center"
-      style="margin-top: 80px !important">
+    <div class="container justify-content-center" style="margin-top: 80px !important">
       <div class="row justify-content-md-center">
         <div class="col-md-8 text-center grid-margin">
           <h1>
             <a href="/Crud-Completo-con-NodeJS-Express-y-MySQL">
               <i class="bi bi-arrow-left-circle"></i>
             </a>
-            Detalles del Estudiante
+            Detalles del Producto
           </h1>
 
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-              Alumno: <%= estudiante.nombre_alumno %>
+              Nombre: <%= producto.nombre_producto %>
             </li>
             <li class="list-group-item">
-              Email: <%= estudiante.email_alumno %>
+              Descripción: <%= producto.descripcion %>
             </li>
             <li class="list-group-item">
-              Curso: <%= estudiante.curso_alumno %>
+              Precio: S/ <%= producto.precio %>
+            </li>
+            <li class="list-group-item">
+              Stock: <%= producto.stock %> unidades
             </li>
           </ul>
         </div>

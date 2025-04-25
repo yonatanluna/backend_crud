@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <link
+      rel="shortcut icon"
+      href=""
+      type="image/x-icon" />
+
+    <!--fuente-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+      rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../public/css/menu.css" />
+    <link rel="stylesheet" href="../public/css/home.css" />
+    <title>Actualizar Producto</title>
+  </head>
+  <body>
+    <header class="header">
+      <a href="../" class="">
+        <img src="" alt="" />
+      </a>
+      <input class="menu-btn" type="checkbox" id="menu-btn" />
+      <label class="menu-icon" for="menu-btn">
+        <span class="navicon"></span>
+      </label>
+      <ul class="menu">
+        <li>
+          <a class="menu-item" href="/">Inicio</a>
+        </li>
+        <li>
+          <a class="menu-item" href="/Crud-Completo-con-NodeJS-Express-y-MySQL">
+            Crud
+          </a>
+        </li>
+      </ul>
+    </header>
+
+    <div class="container" style="margin-top: 80px !important">
+      <div class="row justify-content-md-center mb-5">
+        <div class="col-md-6 mb-5">
+          <h3 class="text-center">
+            <a href="/Crud-Completo-con-NodeJS-Express-y-MySQL">
+              <i class="bi bi-arrow-left-circle"></i>
+            </a>
+            Actualizar Producto
+          </h3>
+          <form action="/actualizar-producto/<%= producto.id_producto %>" method="POST">
+            <input type="hidden" name="_method" value="PUT" />
+            <div class="mb-3">
+              <label for="nombre_producto" class="form-label">Nombre del Producto</label>
+              <input
+                type="text"
+                name="nombre_producto"
+                class="form-control"
+                value="<%= producto.nombre_producto %>"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="descripcion" class="form-label">Descripción</label>
+              <input
+                type="text"
+                name="descripcion"
+                class="form-control"
+                value="<%= producto.descripcion %>"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="precio" class="form-label">Precio (S/)</label>
+              <input
+                type="number"
+                name="precio"
+                class="form-control"
+                step="0.01"
+                value="<%= producto.precio %>"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="stock" class="form-label">Stock</label>
+              <input
+                type="number"
+                name="stock"
+                class="form-control"
+                value="<%= producto.stock %>"
+              />
+            </div>
+            <div class="d-grid gap-2 col-12 mx-auto mt-4 mb-4">
+              <button class="btn btn-primary" type="submit">
+                Actualizar Producto
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <%- include('../includes/scripts') %>
+  </body>
+</html>

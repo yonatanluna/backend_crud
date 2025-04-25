@@ -34,16 +34,15 @@ a {
   background-color: #f4f4f4;
 }
 
-.header .logo {
+.header .{
   display: block;
   float: left;
   font-size: 2em;
   padding: 5px 30px;
   text-decoration: none;
 }
-.logo img {
-  width: 50px;
-}
+
+
 
 /* menu */
 

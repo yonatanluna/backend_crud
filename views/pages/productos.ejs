@@ -10,7 +10,8 @@
       <div class="row justify-content-md-center mb-5">
         <div class="col-md-12 mt-5">
           <h2 class="text-center title">
-            Crud Completo con NodeJS, Express y MySQL
+            Backend y fronted
+            
             <hr />
           </h2>
         </div>
@@ -19,32 +20,30 @@
       <div class="row justify-content-md-center mb-5">
         <div class="col-md-4 mb-5">
           <h3 class="text-center">
-            Registrar Estudiante
+            Registrar Producto
             <hr />
           </h3>
-          <form action="/estudiantes" method="POST">
+          <form action="/productos" method="POST">
             <div class="mb-3">
-              <label for="nombre_alumno" class="form-label"> Alumno </label>
-              <input type="text" name="nombre_alumno" class="form-control" />
+              <label for="nombre_producto" class="form-label"> Nombre del Producto </label>
+              <input type="text" name="nombre_producto" class="form-control" />
             </div>
             <div class="mb-3">
-              <label for="email_alumno" class="form-label"> Email </label>
-              <input type="email" name="email_alumno" class="form-control" />
+              <label for="descripcion" class="form-label"> Descripción </label>
+              <input type="text" name="descripcion" class="form-control" />
             </div>
             <div class="mb-3">
-              <label for="curso_alumno">Curso</label>
-              <select name="curso_alumno" class="form-select">
-                <option value="">Seleccionar el curso</option>
-                <option value="Python">Python</option>
-                <option value="NodeJS">NodeJS</option>
-                <option value="PHP">PHP</option>
-                <option value="JavaScript">JavaScript</option>
-              </select>
+              <label for="precio" class="form-label"> Precio (S/) </label>
+              <input type="number" name="precio" class="form-control" step="0.01" />
+            </div>
+            <div class="mb-3">
+              <label for="stock" class="form-label"> Stock </label>
+              <input type="number" name="stock" class="form-control" />
             </div>
 
             <div class="d-grid gap-2 col-12 mx-auto mt-4 mb-4">
               <button class="btn btn-primary" type="submit">
-                Registrar Estudiante
+                Registrar Producto
               </button>
             </div>
           </form>
@@ -52,7 +51,7 @@
 
         <div class="col-md-8 py-3 custom_table">
           <h3 class="text-center">
-            Lista de Estudiantes
+            Lista de Productos
             <hr />
           </h3>
 
@@ -61,38 +60,38 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Alumno</th>
-                  <th>Email Alumno</th>
-                  <th>Curso del Alumno</th>
+                  <th>Nombre</th>
+                  <th>Descripción</th>
+                  <th>Precio (S/)</th>
+                  <th>Stock</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
                 <% let contador = 1; %>
-                <!---->
-                <% estudiantes.forEach(function(estudiante) { %>
+                <% productos.forEach(function(producto) { %>
                 <tr>
                   <th scope="row"><%= contador %></th>
-                  <td><%= estudiante.nombre_alumno %></td>
-                  <td><%= estudiante.email_alumno %></td>
-                  <td><%= estudiante.curso_alumno %></td>
+                  <td><%= producto.nombre_producto %></td>
+                  <td><%= producto.descripcion %></td>
+                  <td><%= producto.precio %></td>
+                  <td><%= producto.stock %></td>
                   <td>
                     <span style="display: flex; justify-content: space-between">
-                      <!-- Corregir el uso de la variable en la URL del enlace -->
                       <a
                         class="btn btn-info info_especial"
-                        href="/detalles/<%= estudiante.id_estudiante %>"
-                        title="Ver Detalles del Estudiante">
-                        <i class="bi bi-person-bounding-box"></i>
+                        href="/detalles-producto/<%= producto.id_producto %>"
+                        title="Ver Detalles del Producto">
+                        <i class="bi bi-box-seam"></i>
                       </a>
                       <a
                         class="btn btn-success success_especial"
-                        title="Editar datos del Estudiante"
-                        href="/formulario-actualizar-estudiante/<%= estudiante.id_estudiante %>">
+                        title="Editar Producto"
+                        href="/formulario-actualizar-producto/<%= producto.id_producto %>">
                         <i class="bi bi-pencil-square"></i>
                       </a>
                       <form
-                        action="/borrar-estudiante/<%= estudiante.id_estudiante %>"
+                        action="/borrar-producto/<%= producto.id_producto %>"
                         method="POST">
                         <input type="hidden" name="_method" value="DELETE" />
                         <button type="submit" class="btn btn-danger">
@@ -104,7 +103,6 @@
                   </td>
                 </tr>
                 <% contador++; %>
-                <!---->
                 <% }); %>
               </tbody>
             </table>
